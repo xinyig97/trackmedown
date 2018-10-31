@@ -5,7 +5,11 @@ output three excels with each content correspondingly <br/>
 
 reference: <br/>
 geoip lookup api from maxmind :
-https://github.com/maxmind/GeoIP2-python
+https://github.com/maxmind/GeoIP2-python  <br/>
+sqlite tutorial :
+https://www.tutorialspoint.com/sqlite/sqlite_operators.htm <br/>
+http://www.sqlitetutorial.net/sqlite-python/sqlite-python-select/ <br/>
+https://docs.python.org/2/library/sqlite3.html <br/>
 
 File Description: <br/>
 progj.py : version 1 of geolocation monitor with output in excel local doc  <br/>
