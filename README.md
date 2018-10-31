@@ -8,17 +8,17 @@ geoip lookup api from maxmind :
 https://github.com/maxmind/GeoIP2-python
 
 File Description: <br/>
-progj.py : version 1 of geolocation monitor with output in excel local doc 
-v2.py : version 2 with output as python sqlite3 db files
-initialize_db.py : run once ONLY at the beginning to create corresponding databases 
-whitelist.py : functions that to upate whitelisted- ips, and query from it 
-watchlist.py : funtions that to update watchlisted-ips and query from it
+progj.py : version 1 of geolocation monitor with output in excel local doc  <br/>
+v2.py : version 2 with output as python sqlite3 db files <br/>
+initialize_db.py : run once ONLY at the beginning to create corresponding databases <br/>
+whitelist.py : functions that to upate whitelisted- ips, and query from it <br/>
+watchlist.py : funtions that to update watchlisted-ips and query from it <br/>
 
 
 TODO: <br/>
-try immigrate from sqlite3 db into postgres - might need more time on this one  <br/>November 
-consolidating function calls in v2 so utilitze whitelist and watchlist <br/> -10/31 
-generate email alerting system with a regular base <br/> - November 
+try immigrate from sqlite3 db into postgres - might need more time on this one - November <br/>
+consolidating function calls in v2 so utilitze whitelist and watchlist -10/31 <br/> 
+generate email alerting system with a regular base  - November <br/>
 
 
 
