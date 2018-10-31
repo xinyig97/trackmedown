@@ -1,0 +1,5 @@
+# dont include contents of these files 
+*.db
+*.xlsx
+*.log
+*.gz

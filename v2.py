@@ -52,6 +52,8 @@ class failed_combo:
 import re
 import geoip2.database
 import numpy as np
+from watchlist import insert_watched,search_in_watchedl
+from whitelist import insert_whitelist,search_in_whitel
 #local path to geolite2-city.mmdb database 
 reader_city = geoip2.database.Reader('/Users/xinyiguo/Desktop/clean/ransome/python master/geoip_try/geoip/geoip_city/GeoLite2-City.mmdb')
 # for successful user : map name to array of success_combo
@@ -155,15 +157,6 @@ conn = sqlite3.connect('success.db')
 
 c = conn.cursor()
 
-c.execute("""CREATE TABLE successful_logins(
-    hostname text,
-    ip text,
-    datetime text,
-    geolocation text,
-    method text
-)""")
-
-
 def insert_success(key,suc):
     with conn:
         c.execute("INSERT INTO successful_logins VALUES (:hostname,:ip,:date,:geo,:method)",{'hostname':key,'ip':suc.ip,'date':suc.time,'geo':suc.geo,'method':suc.method})
@@ -177,13 +170,6 @@ conn = sqlite3.connect('invalid.db')
 
 c = conn.cursor()
 
-c.execute("""CREATE TABLE invalid_logins (
-    ip text,
-    datetime text,
-    geolocation text,
-    hostname text
-)""")
-
 def insert_invalid(k,inc):
     with conn:
         c.execute("INSERT INTO invalid_logins VALUES (:ip,:date,:geo,:hostname)",{'ip':k,'date':inc.time,'geo':inc.geo,'hostname':inc.name})
@@ -195,13 +181,6 @@ for k,v in invalid.items():
 conn = sqlite3.connect('failed.db')
 
 c = conn.cursor()
-
-c.execute("""CREATE TABLE failed_logins(
-    ip text,
-    datetime text,
-    geolocation text,
-    method text
-)""")
 
 def insert_invalid(k,fa):
     with conn:

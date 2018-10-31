@@ -3,7 +3,6 @@
 # description : analysize log file from ssh, currently extract out successful login data and keep track of failed ones
 # get geo-location of the login based on databse of maxmind : https://dev.maxmind.com/geoip/
 # api: https://github.com/maxmind/GeoIP2-python
-# output to excel file 
 ##################################################################################
 # documents on notations :
 
@@ -51,7 +50,6 @@ class failed_combo:
 import re
 import geoip2.database
 import numpy as np
-#local path to geolite2-city.mmdb database 
 reader_city = geoip2.database.Reader('/Users/xinyiguo/Desktop/clean/ransome/python master/geoip_try/geoip/geoip_city/GeoLite2-City.mmdb')
 # for successful user : map name to array of success_combo
 success = dict()
@@ -262,4 +260,3 @@ df.to_excel(writer,sheet_name='Sheet1')
 workbook=writer.book
 worksheet = writer.sheets['Sheet1']
 writer.save()
-
