@@ -1,7 +1,5 @@
-# date : 10 - 24 - 2018
+# date : 06 - 25 - 2018
 # author : xinyi guo
-# UPDATE : sub excel with sqlite3 db 
-# TODO : immigrate from sqlite3 db into sql 
 # description : analysize log file from ssh, currently extract out successful login data and keep track of failed ones
 # get geo-location of the login based on databse of maxmind : https://dev.maxmind.com/geoip/
 # api: https://github.com/maxmind/GeoIP2-python
@@ -19,17 +17,39 @@
 
 # keyword three : Accepted  - method, username, ipaddr ---> look up for geolocation
 # Jun 22 13:52:05 ncsa-cdcx sshd[29643]: Accepted gssapi-with-mic for xinyig2 from 10.193.152.14 port 53193 ssh2
+
+class legit_combo:
+    def __init__(self,ip,geo,time,method):
+        self.ip = ip
+        self.geo = geo
+        self.time = time
+        self.method = method
+    def detail(self):
+        a = "time: %s, ip: %s, geo: %s, method: %s"%(self.time,self.ip,self.geo,self.method)
+        return(a)
+
+class invalid_combo:
+    def __init__(self,name,geo,time):
+        self.name = name
+        self.geo = geo
+        self.time= time
+    def detail(self):
+        a = "time: %s, geo: %s, name: %s"%(self.time,self.geo,self.name)
+        return(a)
+
+class failed_combo:
+    def __init__(self,geo,time,method):
+        self.geo = geo
+        self.time = time
+        self.method = method
+    def detail(self):
+        a = "time: %s, geo: %s, method: %s"%(self.time,self.geo,self.method)
+        return(a)
     
 # gonna use regex to grab info
-from classes import legit_combo
-from classes import invalid_combo
-from classes import failed_combo
 import re
 import geoip2.database
 import numpy as np
-from watchlist import insert_watched,search_in_watchedl
-from whitelist import insert_whitelist,search_in_whitel
-#local path to geolite2-city.mmdb database 
 reader_city = geoip2.database.Reader('/Users/xinyiguo/Desktop/clean/ransome/python master/geoip_try/geoip/geoip_city/GeoLite2-City.mmdb')
 # for successful user : map name to array of success_combo
 success = dict()
@@ -125,30 +145,118 @@ for line in fhand:
             fail[z[0]] = arr
             fail[z[0]].append(com)
 
-import operations as o
-# for successful logins, record on the success table 
-# add internal to whitelist (for now, maybe more reuqirement later on)
+
+print("success")
+print(suc_c)
 for k,v in success.items():
+    print(k,end='')
     for i in range(len(v)):
-        o.insert_success(k,v[i])
-        if v[i].ip == '10.*':
-            o.insert_whitelist(k,v[i])
-
-# for invalid logins, record on invalid table 
-# check if they exist in whitelist, if so, ignore 
+        print(' ',end='')
+        print(v[i].geo)
+print("invalid")
+print(in_c)
 for k,v in invalid.items():
+ #   print(k,' ',len(v),' ',end='')
     for i in range(len(v)):
-        o.search_in_whitel(v[i].name,k,a)
-        if a == 0:
-            o.insert_invalid(k,v[i])
-        #do something with the watch list, need requirements in terms of that 
-        
+        print(k,' ',len(v),' ',end='')
+        print(v[i].detail())
+print("failed")
+print(f_c)
+for k,v in fail.items():
+ #   print(k,' ',len(v),' ',end='')
+    for i in range(len(v)):
+        print(k,' ',len(v),' ',end='')
+        print(v[i].detail())
 
-# for failed logins, record on invalid table 
+
+import pandas as pd
+
+ip = list()
+times = list()
+time = list()
+geo = list()
+method = list()
+
 for k,v in fail.items():
     for i in range(len(v)):
-        o.insert_failed(k,v[i])
-        o.insert_watchlist_f(k,k)
+        ip.append(k)
+        times.append(len(v))
+        time.append(v[i].time)
+        geo.append(v[i].geo)
+        method.append(v[i].method)
+        
+df = pd.DataFrame({'ip':ip,
+                  'times':times,
+                  'datetime':time,
+                  'geo':geo,
+                  'method':method})
 
+writer = pd.ExcelWriter("fail_list.xlsx",
+                        engine = 'xlsxwriter',
+                        )
 
+df.to_excel(writer,sheet_name='Sheet1')
+workbook=writer.book
+worksheet = writer.sheets['Sheet1']
+writer.save()
 
+sname = list()
+sip = list()
+stimes = list()
+stime = list()
+sgeo = list()
+smethod = list()
+
+for k,v in success.items():
+    for i in range(len(v)):
+        sname.append(k)
+        sip.append(v[i].ip)
+        stimes.append(len(v))
+        stime.append(v[i].time)
+        sgeo.append(v[i].geo)
+        smethod.append(v[i].method)
+        
+df = pd.DataFrame({'name':sname,
+                   'ip':sip,
+                  'times':stimes,
+                  'datetime':stime,
+                  'geo':sgeo,
+                  'method':smethod})
+
+writer = pd.ExcelWriter("success.xlsx",
+                        engine = 'xlsxwriter',
+                        )
+
+df.to_excel(writer,sheet_name='Sheet1')
+workbook=writer.book
+worksheet = writer.sheets['Sheet1']
+writer.save()
+
+iip = list()
+itimes = list()
+itime = list()
+igeo = list()
+iname= list()
+
+for k,v in invalid.items():
+    for i in range(len(v)):
+        iip.append(k)
+        itimes.append(len(v))
+        itime.append(v[i].time)
+        igeo.append(v[i].geo)
+        iname.append(v[i].name)
+        
+df = pd.DataFrame({'ip':iip,
+                  'times':itimes,
+                  'datetime':itime,
+                  'geo':igeo,
+                  'name':iname})
+
+writer = pd.ExcelWriter("invalid.xlsx",
+                        engine = 'xlsxwriter',
+                        )
+
+df.to_excel(writer,sheet_name='Sheet1')
+workbook=writer.book
+worksheet = writer.sheets['Sheet1']
+writer.save()
