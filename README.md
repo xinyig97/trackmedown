@@ -15,6 +15,8 @@ File Description: <br/>
 progj.py : version 1 of geolocation monitor with output in excel local doc  <br/>
 v2.py : version 2 with output as python sqlite3 db files <br/>
 initialize_db.py : run once ONLY at the beginning to create corresponding databases <br/>
+[NOT USED] whitelist.py : update whitelist with ips that are from internal or been authenticated already, no need to keep alert on  <br/>
+[NOT USED] watchlist.py : update watchlist with ips that are suspicious and need to be alerted immediately / in a timely manner <br/>
 classes.py : classes definition <br/>
 operations.py : functions used to interact with database <br/>
 
