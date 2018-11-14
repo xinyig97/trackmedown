@@ -1,4 +1,4 @@
-# date : 10 - 24 - 2018
+# date : 11 - 14 - 2018
 # author : xinyi guo
 # UPDATE : sub excel with sqlite3 db 
 # TODO : immigrate from sqlite3 db into sql 
@@ -125,13 +125,17 @@ for line in fhand:
             fail[z[0]] = arr
             fail[z[0]].append(com)
 
+
+import filters as f 
 import operations as o
 # for successful logins, record on the success table 
 # add internal to whitelist (for now, maybe more reuqirement later on)
 for k,v in success.items():
     for i in range(len(v)):
         o.insert_success(k,v[i])
-        if v[i].ip == '10.*':
+        a = 0
+        f.check_for_whitelist(a,v[i].ip)
+        if a ==1 :
             o.insert_whitelist(k,v[i])
 
 # for invalid logins, record on invalid table 
