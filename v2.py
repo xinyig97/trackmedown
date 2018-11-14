@@ -1,6 +1,6 @@
 # date : 11 - 14 - 2018
 # author : xinyi guo
-# UPDATE : sub excel with sqlite3 db 
+# UPDATE : place appropriate filter for whitelist rule 
 # TODO : immigrate from sqlite3 db into sql 
 # description : analysize log file from ssh, currently extract out successful login data and keep track of failed ones
 # get geo-location of the login based on databse of maxmind : https://dev.maxmind.com/geoip/
