@@ -18,7 +18,7 @@ def insert_invalid(k,inc):
         conn = sqlite3.connect('invalid.db')
         c = conn.cursor()
         with conn : 
-                c.execute("INSERT INTO invalid_logins VALUES (:ip,:date,:geo,:hostname)",{'ip':k,'date':inc.time,'geo':inc.geo,'hostname':inc.name})
+                c.execute("INSERT INTO invalid_logins VALUES (:ip,:date,:geo,:hostname)",{'ip':k,'date':inc.time,'geo':inc.geo,'hostname':inc.user})
         conn.commit()
         conn.close()
 
@@ -62,11 +62,11 @@ def search_in_watchedl(w,a):
     data = c.fetchall()
     if len(data) == 0:
         a = 0
-        print('not in alert immediately, dwdw')
+        #print('not in alert immediately, dwdw')
     else:
         a = 1
-        print('alert now!!!')
-    conn.close()
+        #print('alert now!!!')
+    conn.close()        
 
 def search_in_whitel(hn,w,a):
     conn = sqlite3.connect('whitelist.db')
@@ -76,9 +76,9 @@ def search_in_whitel(hn,w,a):
     data  = c.fetchall()
     if len(data) == 0:
         a = 0
-        print('not existing in whitelist')
+       # print('not existing in whitelist')
     else:
         a = 1
-        print('should be whitelisted already. move on')
+        #print('should be whitelisted already. move on')
     conn.close()
     
