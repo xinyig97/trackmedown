@@ -37,8 +37,8 @@ sqlite databases of the following categories:
  - user can generate regular report from the information by providing corresponding batch files 
  
  ## reference:
- -GeoIP lookup : (https://github.com/maxmind/GeoIP2-python)
- -SQLite tutorial : 
+ - GeoIP lookup : (https://github.com/maxmind/GeoIP2-python)
+ - SQLite tutorial : 
  (https://www.tutorialspoint.com/sqlite/sqlite_operators.htm) <br/>
  (http://www.sqlitetutorial.net/sqlite-python/sqlite-python-select/) <br/>
  (https://docs.python.org/2/library/sqlite3.html) <br/>
