@@ -9,6 +9,7 @@
 - [ ] try immigrate from sqlite3 db into postgres
 - [ ] generate alert system on a regular base - December 
 - [x] whitelist and watchlist rule 
+- [ ] more data to test 
 
 ## dev log 
 #### dev log 10-31:
