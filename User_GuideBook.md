@@ -1,14 +1,14 @@
 # TrackMeDown User Guideline 
 <br/>
 
-#### what does TrackMeDown accomplished 
+## what does TrackMeDown accomplished 
 TrackMeDown could successfully parse login files based on states of logins and apply filter with customized rules to categorize suspicious users account, therefore could help system to monitor security condition, protect valuable information, and guard users' account safety. <br/>
 
-#### why is TrackMeDown useful 
+## why is TrackMeDown useful 
 The easist and most frequent attack happens with attacker trying to breaking into the system with legit user account without users' attention, thus by monitoring login information, we could get a sense of if ths login is from the correct user or might be compromised. <br/>
 By alerting on suspicious logins, system managers could make sure of users' accounts safety. <br/>
 
-#### what data does TrackMeDown use / create 
+## what data does TrackMeDown use / create 
 - use :
   -system log files provided by user 
   -ip geolocation database from MaxMind (https://github.com/maxmind/GeoIP2-python)
@@ -20,8 +20,8 @@ sqlite databases of the following categories:
   -whitelist
   -watchlist 
  
- #### functionalities TrackMeDown has 
- ## Basic Functions :
+ ## functionalities TrackMeDown has 
+ #### Basic Functions :
  - parse log file based on keyword which indicates the state of logins :
   - 'Accepted' 
   - 'Invalid'
@@ -31,11 +31,11 @@ sqlite databases of the following categories:
   - rsuc.db : successful 
   - rinva.db : invalid 
   - rf.db : failed 
- ## Advanced Functions :
+ #### Advanced Functions :
  - user can define rules which should be used for analyzing the login information, such as whitelist certain ips, or watchlist certain ips. 
  - user can generate regular report from the information by providing corresponding batch files 
  
- #### reference:
+ ## reference:
  -GeoIP lookup : (https://github.com/maxmind/GeoIP2-python)
  -SQLite tutorial : 
  (https://www.tutorialspoint.com/sqlite/sqlite_operators.htm) <br/>
@@ -48,7 +48,7 @@ sqlite databases of the following categories:
  (https://help.github.com/articles/basic-writing-and-formatting-syntax/) <br/> 
  - preliminary rules :(https://answers.uillinois.edu/page.php?id=47572#private) <br/>
  
- #### made by 
+ ## made by 
  xinyi 
   
  
