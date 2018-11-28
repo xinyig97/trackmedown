@@ -1,32 +1,72 @@
 import sqlite3
+
 from class_v3 import legit_combo
 from class_v3 import invalid_combo
 from class_v3 import failed_combo
 import filters as f
+
+# print out to check if work properly 
+def check_succ():
+        conn = sqlite3.connect('rsuc.db')
+        c = conn.cursor()
+        c.execute("SELECT ip, hostname, datetime,geolocation,method from success_logins")
+        data = c.fetchall()
+        for i in data:
+                print(i)
+        conn.close()
+
+def check_in():
+        conn = sqlite3.connect('rinva.db')
+        c = conn.cursor()
+        c.execute("SELECT ip, hostname, datatime,geolocation,count from invalid_logins")
+        data = c.fetchall()
+        for i in data:
+                print(i)
+        conn.close()
+
+def check_f():
+        conn = sqlite3.connect('rf.db')
+        c = conn.cursor()
+        c.execute("SELECT ip, hostname, datatime,geoloctaion,method,count from failed_logins")
+        data = c.fetchall()
+        for i in data:
+                print(i)
+        conn.close()
+
+def check_w():
+        conn = sqlite3.connect('whitelist.db')
+        c = conn.cursor()
+        c.execute("SELECT ip from whitelist")
+        data = c.fetchall()
+        for i in data:
+                print(i)
+        conn.close()
+
+def check_wa():
+        conn = sqlite3.connect('watchlist.db')
+        c = conn.cursor()
+        c.execute("SELECT ip,hostname,geolocation,datatime,count,method from watchlist")
+        data = c.fetchall()
+        for i in data:
+                print(i)
+        conn.close()    
+
 
 # operations needed for usage of database 
 def update_success(com):
         conn = sqlite3.connect('rsuc.db')
         c = conn.cursor()
         # see if existing 
-        c.execute("SELECT ip from success_logins WHERE ip = :ip AND hostname = :host",{'ip':com.ip,'host':com.user})
+        c.execute("SELECT ip,hostname from success_logins WHERE ip = :ip AND hostname = :host",{'ip':com.ip,'host':com.user})
         data = c.fetchall()
+        # does not exits 
         if len(data) == 0:
                 #insert new entry 
                 with conn:
                         c.execute("INSERT INTO success_logins VALUES (:hostname,:ip,:date,:geo,:method)",{'hostname':com.user,'ip':com.ip,'date':com.time,'geo':com.geo,'method':com.method}) 
                 conn.commit()
                 conn.close()
-                a = 0
-                f.check_for_whitelist(a,com.ip)
-                # if the new entry should be whitelisted 
-                if a ==1:
-                        conn = sqlite3.connect('whitelist.db')
-                        c = conn.cursor()
-                        with conn:
-                                c.execute("INSERT INTO whitelist VALUES (:ip)",{'ip':com.ip})
-                        conn.commit()
-                        conn.close()
+                f.check_for_whitelist(com.ip)
         else:
                 #update current entry 
                 c.execute("""UPDATE success_logins
@@ -48,7 +88,11 @@ def update_invalid(com):
         if len(data) == 0:
                 # insert a new entry 
                 with conn:
-                        c.execute("INSERT INTO invalid_logins VALUES (:hostname,:ip,:geo,:date,:count)",{'hostname':com.user,'ip':com.ip,'geo':com.geo,'date':com.time,'count':0})
+                        c.execute("INSERT INTO invalid_logins VALUES (:hostname,:ip,:geo,:date,:count)",{'hostname':com.user,'ip':com.ip,'geo':com.geo,'date':com.time,'count':1})
+                conn.commit()
+                conn.close()
+                f.check_for_whitelist(com.ip)
+
         else:
                 #uppdate the currrent existing entry 
                 with conn:
@@ -79,7 +123,7 @@ def update_invalid(com):
                                 data = c.fetchall()
                                 if len(data) == 0:
                                        with conn:
-                                                c.execute("INSERT INTO watchlist VALUES (:ip,:hostname,:geo,:date,:count,:method)",{'ip':com.ip,'hostname':com.user,'geo':com.geo,'date':com.time,'count':0,'method':'unknown'})
+                                                c.execute("INSERT INTO watchlist VALUES (:ip,:hostname,:geo,:date,:count,:method)",{'ip':com.ip,'hostname':com.user,'geo':com.geo,'date':com.time,'count':1,'method':'unknown'})
                                 else:
                                         with conn:
                                                 c.execute("""UPDATE watchlist
@@ -97,10 +141,14 @@ def update_failed(com):
         # see if existing 
         c.execute("SELECT ip from failed_logins WHERE ip = :ip AND hostname = :host",{'ip':com.ip,'host':com.user})
         data = c.fetchall()
+        # does not exist 
         if len(data) == 0:
                 #create new entry 
                 with conn:
                         c.execute("INSERT INTO failed_logins VALUES (:hostname,:ip,:geo,:method,:date,:count)",{'hostname':com.user,'ip':com.ip,'geo':com.geo,'method':com.method,'date':com.time,'count':0})
+                conn.commit()
+                conn.close()
+                f.check_for_whitelist(com.ip)
         else:
                 #update the extry 
                 with conn:
@@ -124,6 +172,7 @@ def update_failed(com):
                         c.execute("SELECT ip from whitelist WHERE ip = :ip",{'ip':com.ip})
                         data = c.fetchall()
                         if len(data) == 0:
+                                # does not whitelisted 
                                 conn = sqlite3.connect('watchlist.db')
                                 c = conn.cursor()
                                 c.execute("SELECT ip from watchlist WHERE ip = :ip AND hostname = :host",{'ip':com.ip,'host':com.user})
@@ -143,3 +192,11 @@ def update_failed(com):
                                 conn.commit()
                                 conn.close()
 
+
+def insert_whitelist(ip):
+        conn = sqlite3.connect('whitelist.db')
+        c = conn.cursor()
+        with conn:
+                c.execute("INSERT INTO whitelist VALUES (:ip)",{'ip':ip})
+        conn.commit()
+        conn.close()

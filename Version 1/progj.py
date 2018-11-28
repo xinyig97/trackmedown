@@ -60,8 +60,9 @@ invalid = dict()
 # for failed user : map failed to fail_combo
 fail = dict()
 #inp = input('feed me the log file : ')
+
 fhand = open('file.log')
-date_pattern = re.compile(r'^\S+');
+date_pattern = re.compile(r'^\S+')
 suc_c = 0
 in_c = 0
 f_c=0
@@ -75,10 +76,10 @@ for line in fhand:
         #print(x);
         # y is their username
         y = re.findall('for (\S+)',line)
-        #print(y);
+        #print(y)
         # z is their ips
         z = re.findall('from (\S+)',line)
-        #print(z);
+        #print(z)
         # t is the time
         t = re.findall(date_pattern,line)
         #print(t);
@@ -96,6 +97,7 @@ for line in fhand:
             arr = list()
             success[y[0]] = arr
             success[y[0]].append(com)
+
     elif 'Invalid' in line:
         if('Invalid argument' in line):
             break;
@@ -114,7 +116,7 @@ for line in fhand:
         try:
             g = reader_city.city(z[0])
             g = g.country.iso_code
-            print(g)
+            #print(g)
            # print(g.country.iso_code);
         except:
             g = 'nonfound'
@@ -148,27 +150,29 @@ for line in fhand:
             fail[z[0]].append(com)
 
 
-print("success")
-print(suc_c)
-for k,v in success.items():
-    print(k,end='')
-    for i in range(len(v)):
-        print(' ',end='')
-        print(v[i].geo)
-print("invalid")
-print(in_c)
-for k,v in invalid.items():
- #   print(k,' ',len(v),' ',end='')
-    for i in range(len(v)):
-        print(k,' ',len(v),' ',end='')
-        print(v[i].detail())
-print("failed")
-print(f_c)
-for k,v in fail.items():
- #   print(k,' ',len(v),' ',end='')
-    for i in range(len(v)):
-        print(k,' ',len(v),' ',end='')
-        print(v[i].detail())
+# #print("success")
+# #print(suc_c)
+# for k,v in success.items():
+#     #print(k,end='')
+#     for i in range(len(v)):
+#         #print(' ',end='')
+#         #print(v[i].geo)
+# #print("invalid")
+# #print(in_c)
+
+# for k,v in invalid.items():
+#  #   print(k,' ',len(v),' ',end='')
+#     for i in range(len(v)):
+#         #print(k,' ',len(v),' ',end='')
+#         #print(v[i].detail())
+# #print("failed")
+# #print(f_c)
+
+# for k,v in fail.items():
+#  #   print(k,' ',len(v),' ',end='')
+#     for i in range(len(v)):
+#         #print(k,' ',len(v),' ',end='')
+#         #print(v[i].detail())
 
 
 import pandas as pd
