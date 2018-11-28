@@ -11,15 +11,15 @@ By alerting on suspicious logins, system managers could make sure of users' acco
 
 ## what data does TrackMeDown use / create 
 - use :
-  -system log files provided by user 
-  -ip geolocation database from MaxMind (https://github.com/maxmind/GeoIP2-python)
+  - system log files provided by user 
+  - ip geolocation database from MaxMind (https://github.com/maxmind/GeoIP2-python)
 - create :
 sqlite databases of the following categories:
   - successful 
-  -invalid 
-  -failed
-  -whitelist
-  -watchlist 
+  - invalid 
+  - failed
+  - whitelist
+  - watchlist 
  
  ## functionalities TrackMeDown has 
  #### Basic Functions :
