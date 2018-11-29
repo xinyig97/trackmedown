@@ -35,7 +35,7 @@ fixed bugs <br/>
 #### dev log 11-29:
 add functionalities that 
  - you can manually whitelisted ip 
- - you can remove entry from watchlist once you get the confimation and choose if reset the count 
+ - you can remove entry from watchlist once you get the confimation and choose if reset the count <br/>
 add output the watchlist result into excel file named 'files.xlsx' <br/>
 
 
