@@ -11,6 +11,9 @@
 - [x] whitelist and watchlist rule 
 - [ ] more data to test 
 
+### resources :
+- Batch files : (http://gobruen.com/progs/dos_batch/dos_batch.html)
+
 ## dev log 
 #### dev log 10-31:
 initialize_db.py - create corresponding list at beginning, run once ONLY <br/>
