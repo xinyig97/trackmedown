@@ -32,6 +32,12 @@ filters.py : using regex for selecting ips <br/>
 validated output <br/>
 fixed bugs <br/>
 
+#### dev log 11-29:
+add functionalities that 
+ - you can manually whitelisted ip 
+ - you can remove entry from watchlist once you get the confimation and choose if reset the count 
+add output the watchlist result into excel file named 'files.xlsx' <br/>
+
 
 ## bug log :
 #### 11-07 : calling functions / classes defined in a different file in python 3 :
