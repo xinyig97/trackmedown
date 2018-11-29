@@ -1,6 +1,7 @@
 from class_v3 import legit_combo
 from class_v3 import invalid_combo
 from class_v3 import failed_combo
+import output as ou 
 import filters as f 
 import op_v3 as o
 
@@ -12,7 +13,7 @@ import numpy as np
 #local path to geolite2-city.mmdb database 
 reader_city = geoip2.database.Reader('/Users/xinyiguo/Desktop/clean/ransome/python master/geoip_try/geoip/geoip_city/GeoLite2-City.mmdb')
 fhand = open('file.log')
-date_pattern = re.compile(r'^\S+');
+date_pattern = re.compile(r'^\S+')
 suc_c = 0
 in_c = 0
 f_c=0
@@ -88,9 +89,9 @@ for line in fhand:
         com = failed_combo(g,t[0],x[0],z[0],name[0])
         o.update_failed(com)
 
+ou.output_watchlist()
 
 # printout to check if work properly 
-
 # print('check success ')
 # o.check_succ()
 # print('check invalid')
