@@ -22,6 +22,9 @@ files interface for TrackMeDown
 - filters.py : rules definition 
 - ini_v3.py : database initialization 
 - op_v3.py : interaction between program with all databases 
+- addwhitelist.py : manually insert whitelisted ip to the database 
+- output.py : generate excel output from watchlist database to excel readable by humans 
+- notwatching.py : manually delete entry from watchlist 
 
 ### orig. file
 log files used for testing, could not posted 
@@ -37,10 +40,17 @@ log files used for testing, could not posted
   - copy the path and paste into /Final Verision/version3.py line 13 
 - get your log file and convert into .log format, put it in /Final Version/version3.py line 14 
 - run /Final Version/ini_v3.py first 
-- run /Final Version/version3.py and your resulted database should exist in your local folder 
+- run /Final Version/version3.py and your resulted database should exist in your local folder, the resulted output of watchlist is in files.xlsx 
 - to access data within each database, comment out line 94-103 in /Final Version/version3.py 
 
-## to change whitelist rule / watchlist rule 
+### to manually whitelist ip 
+- run 'python addwhitelist.py' and follow the prompt 
+
+### to manually delete entry from watchlist 
+- run 'python notwatching.py' and follow the prompt 
+- notice: deletion is an one-time action and not revertable, be careful for that 
+
+### to change whitelist rule / watchlist rule 
 - whitelist : change should be made in /Final Version/filters.py 
 - watchlist : 
  - current threshold is 5, value change should be made in /Final Version/op_v3.py line 110 for 'invalid' and line 168 for 'failed'
