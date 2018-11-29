@@ -42,12 +42,18 @@ sqlite databases of the following categories:
  (https://www.tutorialspoint.com/sqlite/sqlite_operators.htm) <br/>
  (http://www.sqlitetutorial.net/sqlite-python/sqlite-python-select/) <br/>
  (https://docs.python.org/2/library/sqlite3.html) <br/>
+ (http://www.sqlitetutorial.net/sqlite-delete/)<br/>
  - ip cider notation: (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks) <br/> 
  -regex : (https://regexr.com/397dr) </br>
  (https://medium.com/factory-mind/regex-tutorial-a-simple-cheatsheet-by-examples-649dc1c3f285) <br/>
  - git: (https://www.atlassian.com/git/tutorials/saving-changes/gitignore) <br/>
  (https://help.github.com/articles/basic-writing-and-formatting-syntax/) <br/> 
  - preliminary rules :(https://answers.uillinois.edu/page.php?id=47572#private) <br/>
+ - Python in general (Collected based on bug fixing history) : 
+  - how to deal with tuples (https://www.geeksforgeeks.org/tuples-in-python/) 
+  - how to check the type of variable: (https://stackoverflow.com/questions/2225038/determine-the-type-of-an-object) 
+
+ 
  
  ## made by 
  xinyi 
