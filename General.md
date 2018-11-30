@@ -53,7 +53,8 @@ sqlite databases of the following categories:
   - how to deal with tuples (https://www.geeksforgeeks.org/tuples-in-python/) 
   - how to check the type of variable: (https://stackoverflow.com/questions/2225038/determine-the-type-of-an-object) 
 
- 
+ ## future features:
+ - further parsed on detected time and polish the watchlist rule 
  
  ## made by 
  xinyi 
