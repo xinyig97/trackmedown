@@ -39,6 +39,7 @@ log files used for testing, could not posted
   - print out path by using pwd 
   - copy the path and paste into /Final Verision/version3.py line 13 
 - get your log file and convert into .log format, put it in /Final Version/version3.py line 14 
+  - if your file is in .gz.Z , run ''' gzcat *.gz > file.log''' 
 - run /Final Version/ini_v3.py first 
 - run /Final Version/version3.py and your resulted database should exist in your local folder, the resulted output of watchlist is in files.xlsx 
 - to access data within each database, comment out line 94-103 in /Final Version/version3.py 
