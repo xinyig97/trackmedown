@@ -12,7 +12,7 @@ import numpy as np
 
 #local path to geolite2-city.mmdb database 
 reader_city = geoip2.database.Reader('/Users/xinyiguo/Desktop/clean/ransome/python master/geoip_try/geoip/geoip_city/GeoLite2-City.mmdb')
-fhand = open('file.log')
+fhand = open('f1.log')
 date_pattern = re.compile(r'^\S+')
 suc_c = 0
 in_c = 0
@@ -47,6 +47,8 @@ for line in fhand:
         #print(line)
         # y is their username
         y = re.findall('user (\S+)',line)
+        if len(y) == 0:
+            y = 'nonfound'
         #print(y)
         # z is their ips
         z = re.findall('from (\S+)',line)
@@ -61,10 +63,13 @@ for line in fhand:
             #print(g.country.iso_code)
         except:
             g = 'nonfound'
+        #print(g)
         com = invalid_combo(y[0],g,t[0],z[0])
         o.update_invalid(com)
     elif 'Failed' in line:
-        #print(line)
+        if('Failed to apply' in line):
+            break
+        print(line)
         # x is the method they loggin in
         x = re.findall('Failed (\S+)',line)
         #print(x[0])
@@ -73,12 +78,12 @@ for line in fhand:
         #print(z[0])
         # t is the time
         t = re.findall(date_pattern,line)
-       # print(t[0])
+        #print(t[0])
         # name is the user namae 
         name = re.findall('(?<= for invalid user )(.*)(?= from )',line)
         if not name:
             name = re.findall('(?<= for )(.*)(?= from )',line)
-       # print(name)
+        #print(name)
         #name = ['0']
         # g is the geolocation
         try:
@@ -86,18 +91,19 @@ for line in fhand:
             g = g.country.iso_code
         except:
             g = 'nonfound'
+        #print(g)
         com = failed_combo(g,t[0],x[0],z[0],name[0])
         o.update_failed(com)
 
 ou.output_watchlist()
 
 # printout to check if work properly 
-# print('check success ')
-# o.check_succ()
-# print('check invalid')
-# o.check_in()
-# print('check f')
-# o.check_f()
+#print('check success ')
+#o.check_succ()
+#print('check invalid')
+#o.check_in()
+print('check f')
+o.check_f()
 # print('check_white')
 # o.check_w()
 # print('check_watch')
