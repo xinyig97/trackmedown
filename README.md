@@ -42,8 +42,15 @@ add functionalities that
  
 add output the watchlist result into excel file named 'files.xlsx' <br/>
 
+#### dev log 11-30:
+tested on new data and fixed bugs 
+
 
 ## bug log :
 #### 11-07 : calling functions / classes defined in a different file in python 3 :
 (https://stackoverflow.com/questions/31540009/importerror-cannot-import-name-in-python/31540162 )
+#### 11-30: keyword specification 
+'Failed' 'Invalid' 'Accepted' are currently keyword to find information when parsing through log file, however, there may be other cases where also contain those keywords. <br/>
+ - could solve by testing more data 
+ - or by identifying all possible cases that could contain those keywords but irrelevant to our purposes
 
