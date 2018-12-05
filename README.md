@@ -42,10 +42,10 @@ add functionalities that
  
 add output the watchlist result into excel file named 'files.xlsx' <br/>
 
-#### dev log 11-30:
+### dev log 11-30:
 tested on new data and fixed bugs 
 
-#### dev log 12-05:
+### dev log 12-05:
 added very first spotted login based on ip and hostname, thus for later reference <br/>
 update interaction with the databases , organizes them in a more concise way 
  - manually add whitelist entry 
