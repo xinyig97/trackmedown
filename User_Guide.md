@@ -25,6 +25,8 @@ files interface for TrackMeDown
 - addwhitelist.py : manually insert whitelisted ip to the database 
 - output.py : generate excel output from watchlist database to excel readable by humans 
 - notwatching.py : manually delete entry from watchlist 
+- actions.py : manually checkout one entry's first login appearance and its most recent login appearance 
+- interaction.py : combined user interaction with databases 
 
 ### orig. file
 log files used for testing, could not posted 
@@ -44,12 +46,14 @@ log files used for testing, could not posted
 - run /Final Version/version3.py and your resulted database should exist in your local folder, the resulted output of watchlist is in files.xlsx 
 - to access data within each database, comment out line 94-103 in /Final Version/version3.py 
 
-### to manually whitelist ip 
-- run 'python addwhitelist.py' and follow the prompt 
+### user interaction with database:
 
-### to manually delete entry from watchlist 
-- run 'python notwatching.py' and follow the prompt 
-- notice: deletion is an one-time action and not revertable, be careful for that 
+run 'python interaction.py' and follow the prompt 
+
+- to manually whitelist ip
+- to manually delete entry from watchlist 
+  - notice: deletion is an one-time action and not revertable, be careful for that
+- to checkout one entry's peorid of existing 
 
 ### to change whitelist rule / watchlist rule 
 - whitelist : change should be made in /Final Version/filters.py 
