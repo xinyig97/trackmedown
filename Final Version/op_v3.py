@@ -6,6 +6,15 @@ from class_v3 import failed_combo
 import filters as f
 
 # print out to check if work properly 
+def check_first():
+        conn = sqlite3.connect('firstspotted.db')
+        c = conn.cursor()
+        c.execute("SELECT ip, hostname,time from fir")
+        data = c.fetchall()
+        for i in data:
+                print(i)
+        conn.close()
+        
 def check_succ():
         conn = sqlite3.connect('rsuc.db')
         c = conn.cursor()
@@ -66,6 +75,12 @@ def update_success(com):
                         c.execute("INSERT INTO success_logins VALUES (:hostname,:ip,:date,:geo,:method)",{'hostname':com.user,'ip':com.ip,'date':com.time,'geo':com.geo,'method':com.method}) 
                 conn.commit()
                 conn.close()
+                conn = sqlite3.connect('firstspotted.db')
+                c = conn.cursor()
+                with conn:
+                        c.execute("INSERT INTO fir VALUES (:ip,:username,:time)",{'ip':com.ip,'username':com.user,'time':com.time})
+                conn.commit()
+                conn.close()
                 f.check_for_whitelist(com.ip)
         else:
                 #update current entry 
@@ -89,6 +104,12 @@ def update_invalid(com):
                 # insert a new entry 
                 with conn:
                         c.execute("INSERT INTO invalid_logins VALUES (:hostname,:ip,:geo,:date,:count)",{'hostname':com.user,'ip':com.ip,'geo':com.geo,'date':com.time,'count':1})
+                conn.commit()
+                conn.close()
+                conn = sqlite3.connect('firstspotted.db')
+                c = conn.cursor()
+                with conn:
+                        c.execute("INSERT INTO fir VALUES (:ip,:hostname,:time)",{'ip':com.ip,'hostname':com.user,'time':com.time})
                 conn.commit()
                 conn.close()
                 f.check_for_whitelist(com.ip)
@@ -148,6 +169,12 @@ def update_failed(com):
                         c.execute("INSERT INTO failed_logins VALUES (:hostname,:ip,:geo,:method,:date,:count)",{'hostname':com.user,'ip':com.ip,'geo':com.geo,'method':com.method,'date':com.time,'count':0})
                 conn.commit()
                 conn.close()
+                conn = sqlite3.connect('firstspotted.db')
+                c = conn.cursor()
+                with conn:
+                        c.execute("INSERT INTO fir VALUES (:ip,:hostname,:time)",{'ip':com.ip,'hostname':com.user,'time':com.time})
+                conn.commit()
+                conn.close()
                 f.check_for_whitelist(com.ip)
         else:
                 #update the extry 
@@ -164,7 +191,6 @@ def update_failed(com):
                 conn.commit()
                 conn.close()
                 # check if existing 
-                #print(data[0][0])
                 if data[0][0] > 5:
                         # check if whitelisted 
                         conn = sqlite3.connect('whitelist.db')

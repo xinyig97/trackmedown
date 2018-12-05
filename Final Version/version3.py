@@ -96,14 +96,14 @@ for line in fhand:
         o.update_failed(com)
 
 ou.output_watchlist()
-
+#o.check_first()
 # printout to check if work properly 
 #print('check success ')
 #o.check_succ()
 #print('check invalid')
 #o.check_in()
-print('check f')
-o.check_f()
+#print('check f')
+#o.check_f()
 # print('check_white')
 # o.check_w()
 # print('check_watch')

@@ -54,3 +54,14 @@ c.execute("""CREATE TABLE watchlist(
     count integer,
     method text
 )""")
+conn.close()
+
+conn = sqlite3.connect('firstspotted.db')
+c = conn.cursor()
+c.execute("""CREATE TABLE fir(
+    ip text,
+    hostname text,
+    time text
+)""")
+conn.close()
+
