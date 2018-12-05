@@ -35,6 +35,7 @@ sqlite databases of the following categories:
  #### Advanced Functions :
  - user can define rules which should be used for analyzing the login information, such as whitelist certain ips, or watchlist certain ips. 
  - user can generate regular report from the information by providing corresponding batch files 
+ - user can manually populate whitelist, modify watchlist and get access of an entry of its first appearance and most recent appearance
  
  ## reference:
  - GeoIP lookup : (https://github.com/maxmind/GeoIP2-python)
