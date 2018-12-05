@@ -46,8 +46,11 @@ add output the watchlist result into excel file named 'files.xlsx' <br/>
 tested on new data and fixed bugs 
 
 #### dev log 12-05:
-added very first spotted login based on ip and hostname, thus for later reference 
-
+added very first spotted login based on ip and hostname, thus for later reference <br/>
+update interaction with the databases , organizes them in a more concise way 
+ - manually add whitelist entry 
+ - remove entry from watchlist and reset the count 
+ - observe an entry from it's very first appearance and most recent appearance 
 
 ## bug log :
 #### 11-07 : calling functions / classes defined in a different file in python 3 :
