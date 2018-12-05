@@ -61,7 +61,8 @@ c = conn.cursor()
 c.execute("""CREATE TABLE fir(
     ip text,
     hostname text,
-    time text
+    time text,
+    state text
 )""")
 conn.close()
 

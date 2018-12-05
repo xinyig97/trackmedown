@@ -9,12 +9,12 @@ import filters as f
 def check_first():
         conn = sqlite3.connect('firstspotted.db')
         c = conn.cursor()
-        c.execute("SELECT ip, hostname,time from fir")
+        c.execute("SELECT ip, hostname,time,state from fir")
         data = c.fetchall()
         for i in data:
                 print(i)
         conn.close()
-        
+
 def check_succ():
         conn = sqlite3.connect('rsuc.db')
         c = conn.cursor()
@@ -78,7 +78,7 @@ def update_success(com):
                 conn = sqlite3.connect('firstspotted.db')
                 c = conn.cursor()
                 with conn:
-                        c.execute("INSERT INTO fir VALUES (:ip,:username,:time)",{'ip':com.ip,'username':com.user,'time':com.time})
+                        c.execute("INSERT INTO fir VALUES (:ip,:username,:time,:state)",{'ip':com.ip,'username':com.user,'time':com.time,'state':"successful"})
                 conn.commit()
                 conn.close()
                 f.check_for_whitelist(com.ip)
@@ -109,7 +109,7 @@ def update_invalid(com):
                 conn = sqlite3.connect('firstspotted.db')
                 c = conn.cursor()
                 with conn:
-                        c.execute("INSERT INTO fir VALUES (:ip,:hostname,:time)",{'ip':com.ip,'hostname':com.user,'time':com.time})
+                        c.execute("INSERT INTO fir VALUES (:ip,:hostname,:time,:state)",{'ip':com.ip,'hostname':com.user,'time':com.time,'state':"Invalid"})
                 conn.commit()
                 conn.close()
                 f.check_for_whitelist(com.ip)
@@ -172,7 +172,7 @@ def update_failed(com):
                 conn = sqlite3.connect('firstspotted.db')
                 c = conn.cursor()
                 with conn:
-                        c.execute("INSERT INTO fir VALUES (:ip,:hostname,:time)",{'ip':com.ip,'hostname':com.user,'time':com.time})
+                        c.execute("INSERT INTO fir VALUES (:ip,:hostname,:time,:state)",{'ip':com.ip,'hostname':com.user,'time':com.time,'state':"FAILED"})
                 conn.commit()
                 conn.close()
                 f.check_for_whitelist(com.ip)

@@ -53,24 +53,24 @@ def reset_count(ip,name):
 
 
 
-q1 = input("do you want to delete anything from the watchlist? reply 'yes' or 'no' ")
-if q1 == 'yes':
-    ip = input('what is the ip that you dont need to watchlist: ')
-    name = input('what is the corresponding username: ')
-    remove_from_watchlist(ip,name)
-    q2 = input("do you want to reset the count of this entry? reply 'yes' or 'no' ")
-    if q2 == 'yes':
-        reset_count(ip,name)
-        print('you are all set')
-    else:
-        print('fine')
-    ou.output_watchlist()
+# q1 = input("do you want to delete anything from the watchlist? reply 'yes' or 'no' ")
+# if q1 == 'yes':
+#     ip = input('what is the ip that you dont need to watchlist: ')
+#     name = input('what is the corresponding username: ')
+#     remove_from_watchlist(ip,name)
+#     q2 = input("do you want to reset the count of this entry? reply 'yes' or 'no' ")
+#     if q2 == 'yes':
+#         reset_count(ip,name)
+#         print('you are all set')
+#     else:
+#         print('fine')
+#     ou.output_watchlist()
 
-else:
-    print('ok bye')
+# else:
+#     print('ok bye')
 
 
-print('check invalid')
-o.check_in()
-print('check f')
-o.check_f()
+# print('check invalid')
+# o.check_in()
+# print('check f')
+# o.check_f()

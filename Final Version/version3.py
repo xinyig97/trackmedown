@@ -69,7 +69,7 @@ for line in fhand:
     elif 'Failed' in line:
         if('Failed to apply' in line):
             break
-        print(line)
+        #print(line)
         # x is the method they loggin in
         x = re.findall('Failed (\S+)',line)
         #print(x[0])
@@ -96,7 +96,7 @@ for line in fhand:
         o.update_failed(com)
 
 ou.output_watchlist()
-#o.check_first()
+o.check_first()
 # printout to check if work properly 
 #print('check success ')
 #o.check_succ()
