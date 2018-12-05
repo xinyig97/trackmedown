@@ -15,27 +15,27 @@
 - Batch files : (http://gobruen.com/progs/dos_batch/dos_batch.html)
 
 ## dev log 
-#### dev log 10-31:
+### dev log 10-31:
 initialize_db.py - create corresponding list at beginning, run once ONLY <br/>
 whitelist.py - update whitelist with ips that are from internal or been authenticated already, no need to keep alert on  <br/>
 watchlist.py - update watchlist with ips that are suspicious and need to be alerted immediately / in a timely manner <br/>
 v2.py - slightly modification with arrangement of codes and functions <br/>
 
-#### dev log 11-07:
+### dev log 11-07:
 classes.py - classes definition, accessed by other functions in py <br/>
 operations.py - functions used to interact with database (query and insert) <br/>
 operations.py replaced whitelist.py and watchlist.py <br/>
 v2.py - directly interaction with databases <br/>
 
-#### dev log 11-14: 
+### dev log 11-14: 
 v2.py : plcae appropriate filters for whitelist rule  <br/>
 filters.py : using regex for selecting ips <br/>
 
-#### dev log 11-28:
+### dev log 11-28:
 validated output <br/>
 fixed bugs <br/>
 
-#### dev log 11-29:
+### dev log 11-29:
 add functionalities that 
  - you can manually whitelisted ip 
  - you can remove entry from watchlist once you get the confimation and choose if reset the count <br/>
