@@ -35,6 +35,7 @@ log files used for testing, could not posted
 - try.py : first time parsing logfile with information saved in dictionary and no output 
 
 ## how to use 
+- make sure you have python3 installed with pandas module 
 - download MaxMind database : (https://dev.maxmind.com/geoip/geoip2/geolite2/)
 - find the path to your database on your local PC 
   - navigate to the your database by using cd on terminal 
