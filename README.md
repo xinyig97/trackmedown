@@ -59,4 +59,5 @@ update interaction with the databases , organizes them in a more concise way
 'Failed' 'Invalid' 'Accepted' are currently keyword to find information when parsing through log file, however, there may be other cases where also contain those keywords. <br/>
  - could solve by testing more data 
  - or by identifying all possible cases that could contain those keywords but irrelevant to our purposes
+ #### 12-05: python use copying variable when calling functions
 
