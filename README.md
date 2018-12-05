@@ -45,6 +45,9 @@ add output the watchlist result into excel file named 'files.xlsx' <br/>
 #### dev log 11-30:
 tested on new data and fixed bugs 
 
+#### dev log 12-05:
+added very first spotted login based on ip and hostname, thus for later reference 
+
 
 ## bug log :
 #### 11-07 : calling functions / classes defined in a different file in python 3 :
