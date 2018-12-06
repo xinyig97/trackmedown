@@ -130,6 +130,7 @@ def update_invalid(com):
                 #print(data[0][0])
                 if data[0][0] > 5: #sub 5 with threshold
                         # check if in the whitelist 
+                        th = data[0][0]
                         conn = sqlite3.connect('whitelist.db')
                         c = conn.cursor()
                         c.execute("SELECT ip from whitelist WHERE ip = :ip",{'ip':com.ip})
@@ -144,7 +145,7 @@ def update_invalid(com):
                                 data = c.fetchall()
                                 if len(data) == 0:
                                        with conn:
-                                                c.execute("INSERT INTO watchlist VALUES (:ip,:hostname,:geo,:date,:count,:method)",{'ip':com.ip,'hostname':com.user,'geo':com.geo,'date':com.time,'count':1,'method':'unknown'})
+                                                c.execute("INSERT INTO watchlist VALUES (:ip,:hostname,:geo,:date,:count,:method)",{'ip':com.ip,'hostname':com.user,'geo':com.geo,'date':com.time,'count':th,'method':'unknown'})
                                 else:
                                         with conn:
                                                 c.execute("""UPDATE watchlist
@@ -192,6 +193,7 @@ def update_failed(com):
                 conn.close()
                 # check if existing 
                 if data[0][0] > 5:
+                        th = data[0][0]
                         # check if whitelisted 
                         conn = sqlite3.connect('whitelist.db')
                         c = conn.cursor()
@@ -206,7 +208,7 @@ def update_failed(com):
                                 if len(data) == 0:
                                         # add entry to the watch list 
                                         with conn:
-                                               c.execute("INSERT INTO watchlist VALUES (:ip,:hostname,:geo,:date,:count,:method)",{'ip':com.ip,'hostname':com.user,'geo':com.geo,'date':com.time,'count':0,'method':com.method})
+                                               c.execute("INSERT INTO watchlist VALUES (:ip,:hostname,:geo,:date,:count,:method)",{'ip':com.ip,'hostname':com.user,'geo':com.geo,'date':com.time,'count':th,'method':com.method})
                                 else:
                                         with conn:
                                                 c.execute("""UPDATE watchlist
