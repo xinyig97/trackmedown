@@ -1,15 +1,17 @@
-from class_v3 import legit_combo
-from class_v3 import invalid_combo
-from class_v3 import failed_combo
-import output as ou 
-import filters as f 
-import op_v3 as o
+from class_v4 import legit_combo
+from class_v4 import invalid_combo
+from class_v4 import failed_combo
+
+import output_v4 as ou 
+import filter_v4 as f 
+import op_v4 as o
 
 import re
-import geoip2.database
+from geoip import geolite2
 import numpy as np
 
 def handle(fhand):
+    date_pattern = re.compile(r'^\S+')
     for line in fhand:
         # successful users
         if ' Accepted ' in line:
@@ -28,10 +30,11 @@ def handle(fhand):
             #print(t)
             # g is the geolocation
             try:
-                g = reader_city.city(z[0])
-                g = g.country.iso_code
+                g = geolite2.lookup(z[0])
+                g = g.country
             except:
                 g = 'nonfound'
+            #print(g)
             com = legit_combo(z[0],g,t[0],x[0],y[0])
             o.update_success(com)
         elif 'Invalid' in line:
@@ -51,8 +54,8 @@ def handle(fhand):
             #print(t)
             # g is the geolocation
             try:
-                g = reader_city.city(z[0])
-                g = g.country.iso_code
+                g = geolite2.lookup(z[0])
+                g = g.country
                 #print(g.country.iso_code)
             except:
                 g = 'nonfound'
@@ -64,7 +67,7 @@ def handle(fhand):
                 break
             if('Failed to release session' in line):
                 break
-            print(line)
+            #print(line)
             if('Failed to' in line):
                 break
         #    x is the method they loggin in
@@ -84,8 +87,8 @@ def handle(fhand):
             #name = ['0']
             # g is the geolocation
             try:
-                g = reader_city.city(z[0])
-                g = g.country.iso_code
+                g = geolite2.lookup(z[0])
+                g = g.country
             except:
                 g = 'nonfound'
             #print(g)
@@ -93,15 +96,9 @@ def handle(fhand):
             o.update_failed(com)
 
 
-#local path to geolite2-city.mmdb database 
-files = ['f27.log','f28.log','f29.log','file.log']
-#files = ['f7.log']
-#files = ['f7.log','f8.log','f9.log','f10.log','f11.log','f12.log','f13.log','file.log']
-reader_city = geoip2.database.Reader('/Users/xinyiguo/Desktop/clean/ransome/python master/geoip_try/geoip/geoip_city/GeoLite2-City.mmdb')
-date_pattern = re.compile(r'^\S+')
-suc_c = 0
-in_c = 0
-f_c=0
+#files = ['f27.log','f28.log','f29.log','file.log']
+files = ['file.log']
+#files = ['f1.log','f2.log','f3.log','f4.log','f5.log','f6.log','f7.log','f8.log','f9.log','f10.log','f11.log','f12.log','f13.log','f14.log','f15.log','f16.log','f17.log','f18.log','f19.log','f20.log','f21.log','f22.log','f23.log','f24.log','f25.log','f26.log','f27.log','f28.log','f29.log']
 for i in files:
     fhand = open(i)
     handle(fhand)
@@ -109,8 +106,8 @@ for i in files:
 ou.output_watchlist()
 o.check_first()
 # printout to check if work properly 
-#print('check success ')
-#o.check_succ()
+# print('check success ')
+# o.check_succ()
 #print('check invalid')
 #o.check_in()
 #print('check f')
@@ -119,3 +116,8 @@ o.check_first()
 # o.check_w()
 # print('check_watch')
 # o.check_wa()
+
+
+
+# https://pythonhosted.org/python-geoip/
+# https://stackoverflow.com/questions/42616376/install-pandas-on-mac-with-pip/42616942 

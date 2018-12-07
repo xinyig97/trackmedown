@@ -4,7 +4,7 @@
 # need to test more on ipv6
 
 import re 
-import memorysave as op
+import op_v4 as op
 
 external = re.compile(r'141.142.\d{1,3}\W\d{1,3}') #141.142.0.0/16
 internal = re.compile(r'172.\b(2[4-9]|3[0-1])\b\W\d{1,3}\W\d{1,3}') #172.24.0.0/13 

@@ -1,9 +1,9 @@
 import sqlite3
 
-from class_v3 import legit_combo
-from class_v3 import invalid_combo
-from class_v3 import failed_combo
-import filter_v2 as f
+from class_v4 import legit_combo
+from class_v4 import invalid_combo
+from class_v4 import failed_combo
+import filter_v4 as f
 
 # check if exist in whitelist database 
 def isitin(ip):

@@ -35,19 +35,11 @@ log files used for testing, could not posted
 - try.py : first time parsing logfile with information saved in dictionary and no output 
 
 ## how to use 
-- prepare your computer with python3, pandas, geoip 
-   - geoip: (https://pythonhosted.org/python-geoip/)
-- make sure you have python3 installed with pandas module 
-- download MaxMind database : (https://dev.maxmind.com/geoip/geoip2/geolite2/)
-- find the path to your database on your local PC 
-  - navigate to the your database by using cd on terminal 
-  - print out path by using pwd 
-  - copy the path and paste into /Final Verision/version3.py line 13 
+- prepare your computer with python3, pandas module included 
 - get your log file and convert into .log format, put it in /Final Version/version3.py line 14 
   - if your file is in .gz.Z , run ''' gzcat *.gz > file.log''' 
-- run /Final Version/ini_v3.py first 
-- run /Final Version/version3.py and your resulted database should exist in your local folder, the resulted output of watchlist is in files.xlsx 
-- to access data within each database, comment out line 94-103 in /Final Version/version3.py 
+- run ini_v*.py first , * depends on which version you are running 
+- run version*.py and your resulted database should exist in your local folder, the resulted output of watchlist is in files.xlsx, * depends on which version you are running 
 
 ### user interaction with database:
 
