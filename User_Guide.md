@@ -16,7 +16,7 @@ files interface for TrackMeDown
 - watchlist.py : interaction between program and watchlist database 
 - whitelist.py : interaction between program and whitelist database 
 
-### Final Version 
+### version 3: [still the one in favor]  
 - version3.py : integrated functions, cleaned up interfaces, more concisely 
 - class_v3.py : classes definition 
 - filters.py : rules definition 
@@ -27,6 +27,18 @@ files interface for TrackMeDown
 - notwatching.py : manually delete entry from watchlist 
 - actions.py : manually checkout one entry's first login appearance and its most recent login appearance 
 - interaction.py : combined user interaction with databases 
+
+### version 4 : twin with version 3 in difference of whitelist implementation 
+- v4.py : integrated functions, cleaned up interfaces, more concisely 
+- class_v4.py : classes definition 
+- filter_v4.py : rules definition 
+- ini_v4.py : database initialization 
+- op_v4.py : interaction between program with all databases 
+- addwhitelist_v4.py : manually insert whitelisted ip to the database 
+- output_v4.py : generate excel output from watchlist database to excel readable by humans 
+- notwatching_v4.py : manually delete entry from watchlist 
+- actions_v4.py : manually checkout one entry's first login appearance and its most recent login appearance 
+- interaction_v4.py : combined user interaction with databases 
 
 ### orig. file
 log files used for testing, could not posted 
