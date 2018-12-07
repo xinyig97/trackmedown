@@ -121,3 +121,8 @@ o.check_succ()
 # o.check_w()
 # print('check_watch')
 # o.check_wa()
+
+
+
+# https://pythonhosted.org/python-geoip/
+# https://stackoverflow.com/questions/42616376/install-pandas-on-mac-with-pip/42616942 
