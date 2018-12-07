@@ -51,6 +51,10 @@ update interaction with the databases , organizes them in a more concise way
  - manually add whitelist entry 
  - remove entry from watchlist and reset the count 
  - observe an entry from it's very first appearance and most recent appearance 
+ 
+ ### dev log 12-07:
+ tried depopulating whitelist database memory by directly comparing with filter for running time efficieny, which is version 4<br/>
+ sub maxmind database download with geoip module <br/>
 
 ## bug log :
 #### 11-07 : calling functions / classes defined in a different file in python 3 :
