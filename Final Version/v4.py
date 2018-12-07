@@ -1,12 +1,13 @@
 from class_v3 import legit_combo
 from class_v3 import invalid_combo
 from class_v3 import failed_combo
-import output as ou 
+#import output as ou 
 import filter_v2 as f 
 import memorysave as o
 
 import re
-import geoip2.database
+#import geoip2.database
+from geoip import geolite2
 import numpy as np
 
 def handle(fhand):
@@ -28,10 +29,11 @@ def handle(fhand):
             #print(t)
             # g is the geolocation
             try:
-                g = reader_city.city(z[0])
-                g = g.country.iso_code
+                g = geolite2.lookup(z[0])
+                g = g.country
             except:
                 g = 'nonfound'
+            #print(g)
             com = legit_combo(z[0],g,t[0],x[0],y[0])
             o.update_success(com)
         elif 'Invalid' in line:
@@ -51,12 +53,12 @@ def handle(fhand):
             #print(t)
             # g is the geolocation
             try:
-                g = reader_city.city(z[0])
-                g = g.country.iso_code
+                g = geolite2.lookup(z[0])
+                g = g.country
                 #print(g.country.iso_code)
             except:
                 g = 'nonfound'
-            #print(g)
+            print(g)
             com = invalid_combo(y[0],g,t[0],z[0])
             o.update_invalid(com)
         elif 'Failed' in line:
@@ -64,7 +66,7 @@ def handle(fhand):
                 break
             if('Failed to release session' in line):
                 break
-            print(line)
+            #print(line)
             if('Failed to' in line):
                 break
         #    x is the method they loggin in
@@ -84,20 +86,20 @@ def handle(fhand):
             #name = ['0']
             # g is the geolocation
             try:
-                g = reader_city.city(z[0])
-                g = g.country.iso_code
+                g = geolite2.lookup(z[0])
+                g = g.country
             except:
                 g = 'nonfound'
-            #print(g)
+            print(g)
             com = failed_combo(g,t[0],x[0],z[0],name[0])
             o.update_failed(com)
 
 
 #local path to geolite2-city.mmdb database 
-files = ['f27.log','f28.log','f29.log','file.log']
-#files = ['f7.log']
+#files = ['f27.log','f28.log','f29.log','file.log']
+files = ['f1.log']
 #files = ['f7.log','f8.log','f9.log','f10.log','f11.log','f12.log','f13.log','file.log']
-reader_city = geoip2.database.Reader('/Users/xinyiguo/Desktop/clean/ransome/python master/geoip_try/geoip/geoip_city/GeoLite2-City.mmdb')
+#reader_city = geoip2.database.Reader('/Users/xinyiguo/Desktop/clean/ransome/python master/geoip_try/geoip/geoip_city/GeoLite2-City.mmdb')
 date_pattern = re.compile(r'^\S+')
 suc_c = 0
 in_c = 0
@@ -106,11 +108,11 @@ for i in files:
     fhand = open(i)
     handle(fhand)
 
-ou.output_watchlist()
-o.check_first()
+#ou.output_watchlist()
+#o.check_first()
 # printout to check if work properly 
-#print('check success ')
-#o.check_succ()
+print('check success ')
+o.check_succ()
 #print('check invalid')
 #o.check_in()
 #print('check f')
